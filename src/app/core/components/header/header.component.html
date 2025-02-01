@@ -1,0 +1,8 @@
+<header
+  [ngClass]="{ extended: headerService.extended() }"
+  class="background-image"
+>
+  <h1 class="{{ appliedClass() }}" (animationend)="showNewTitle($event)">
+    {{ shownTitle() }}
+  </h1>
+</header>
