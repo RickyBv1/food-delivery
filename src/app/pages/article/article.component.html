@@ -1,1 +1,30 @@
-<p>article works!</p>
+<img
+  class="product-picture"
+  src="{{ product?.pictureUrl }}"
+  alt="{{ product?.name }}"
+/>
+<div class="small-margin">
+  <ul>
+    <span>Ingredients: </span>
+    <li *ngFor="let ingredient of product?.ingredients">{{ ingredient }}</li>
+  </ul>
+  <div>
+    <div class="different-container" *ngIf="product?.isCeliac">
+      <img class="different" src="/icons/celiac.png" alt="Gluten Free" />
+      <p>Gluten Free</p>
+    </div>
+    <div class="different-container" *ngIf="product?.isVegan">
+      <img class="different" src="/icons/vegan.png" alt="Vegan" />
+      <p>Vegan</p>
+    </div>
+  </div>
+  <label for="notes">Notes:</label>
+  <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+  <div class="amount-container">
+    <label for="amount">Amount:</label>
+    <app-amount-counter
+      (changedAmount)="amount.set($event)"
+    ></app-amount-counter>
+  </div>
+  <button>Add to cart</button>
+</div>

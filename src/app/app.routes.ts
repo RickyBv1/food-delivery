@@ -20,7 +20,7 @@ export const routes: Routes = [
     component: EntryComponent,
   },
   {
-    path: 'article',
+    path: 'article/:id',
     component: ArticleComponent,
   },
   {

@@ -15,4 +15,20 @@ export class ProductsService {
     if (products) return products;
     return [];
   }
+
+  async getAll(): Promise<Product[]> {
+    const res = await fetch('/assets/data/database.json');
+    const resJson: Category[] = await res.json();
+    let products: Product[] = [];
+    resJson.forEach((category) => {
+      products = [...products, ...category.products];
+    });
+    return products;
+  }
+
+  async getById(id: number): Promise<Product | undefined> {
+    const products = await this.getAll();
+    const selectedProduct = products.find((product) => product.id === id);
+    return selectedProduct ? selectedProduct : undefined;
+  }
 }

@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
 import { ProductsService } from '../../core/services/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Product } from '../../core/interfaces/products';
 import { ProductCardComponent } from '../../core/components/product-card/product-card.component';
 import { CategoriesService } from '../../core/services/categories.service';
 
 @Component({
   selector: 'app-entry',
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, RouterModule],
   templateUrl: './entry.component.html',
   styleUrl: './entry.component.scss',
   standalone: true,

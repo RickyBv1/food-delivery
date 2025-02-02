@@ -35,7 +35,7 @@ body {
   height: 100dvh;
   overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  //color: variables.$text-color;
+//   color: black;
 }
 ol, ul {
 	list-style: none;
@@ -63,9 +63,9 @@ app-root{
 //   font-weight: bold;
 // }
 
-// .small-margin{
-//   margin: 10px;
-// }
+.small-margin{
+  margin: 10px;
+}
 
 // .bold{
 //   font-weight: bold;

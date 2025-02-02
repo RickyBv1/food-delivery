@@ -7,7 +7,7 @@
       {
         "id": "7",
         "name": "Regular pizza",
-        "price": 1000,
+        "price": 30,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": ["Mozzarella", "Olives", "Oregano"],
@@ -16,7 +16,7 @@
       {
         "id": "8",
         "name": "Special pizza",
-        "price": 1200,
+        "price": 38,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": ["Mozzarella", "Olives", "Peppers", "Tomato", "Egg"],
@@ -25,7 +25,7 @@
       {
         "id": "9",
         "name": "Four cheese pizza",
-        "price": 1300,
+        "price": 38,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": ["Mozzarella", "Roquefort", "Provolone", "Parmesan"],
@@ -36,12 +36,12 @@
   {
     "id": 2,
     "name": "Hamburgers",
-    "pictureUrl": "https://img.freepik.com/vector-gratis/Burger-realista-sobre-fondo-pizarra_79603-1042.jpg?w=2000",
+    "pictureUrl": "https://img.freepik.com/vector-gratis/hamburguesa-realista-sobre-fondo-pizarra_79603-1042.jpg?w=2000",
     "products": [
       {
         "id": "1",
         "name": "Cheese burger",
-        "price": 1000,
+        "price": 12,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": ["Ground beef", "Brioche bread", "Cheese"],
@@ -49,8 +49,8 @@
       },
       {
         "id": "2",
-        "name": "Burger especial",
-        "price": 1500,
+        "name": "Special burger",
+        "price": 16,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": [
@@ -65,16 +65,16 @@
       {
         "id": "3",
         "name": "Vegan Burger",
-        "price": 1300,
+        "price": 17,
         "isVegan": true,
         "isCeliac": false,
         "ingredients": ["Vegan patty", "Brioche bread", "Tomato"],
-        "pictureUrl": "https://www.pequerecetas.com/wp-content/uploads/2009/04/Burger-de-garbanzos-casera-receta.jpg"
+        "pictureUrl": "https://www.pequerecetas.com/wp-content/uploads/2009/04/hamburguesa-de-garbanzos-casera-receta.jpg"
       },
       {
         "id": "4",
         "name": "Gluten Free Burger",
-        "price": 1250,
+        "price": 16,
         "isVegan": false,
         "isCeliac": true,
         "ingredients": ["Ground beef", "Gluten free bread", "Cheese"],
@@ -83,7 +83,7 @@
       {
         "id": "5",
         "name": "American Burger",
-        "price": 3500,
+        "price": 20,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": [
@@ -98,11 +98,11 @@
       {
         "id": "6",
         "name": "Vegan Burger Platter",
-        "price": 2000,
+        "price": 17,
         "isVegan": true,
         "isCeliac": true,
         "ingredients": ["Vegan patty", "Tomato", "Lettuce"],
-        "pictureUrl": "https://canalcocina.es/medias/images/1010_Coc_RecetasDeAnnie_BurgerQueso.jpg"
+        "pictureUrl": "https://canalcocina.es/medias/images/1010_Coc_RecetasDeAnnie_HamburguesaQueso.jpg"
       }
     ]
   },
@@ -114,7 +114,7 @@
       {
         "id": "10",
         "name": "Tiramisú",
-        "price": 800,
+        "price": 10,
         "isVegan": false,
         "isCeliac": true,
         "ingredients": [],
@@ -123,7 +123,7 @@
       {
         "id": "11",
         "name": "Chocolate cake",
-        "price": 800,
+        "price": 10,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": [],
@@ -132,7 +132,7 @@
       {
         "id": "12",
         "name": "Quaker Turrón",
-        "price": 800,
+        "price": 10,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": [],
@@ -148,7 +148,7 @@
       {
         "id": "13",
         "name": "Water",
-        "price": 100,
+        "price": 3.75,
         "isVegan": true,
         "isCeliac": true,
         "ingredients": [],
@@ -157,7 +157,7 @@
       {
         "id": "14",
         "name": "Orange flavored water",
-        "price": 100,
+        "price": 4.25,
         "isVegan": true,
         "isCeliac": true,
         "ingredients": [],
@@ -166,7 +166,7 @@
       {
         "id": "15",
         "name": "Grape Fanta",
-        "price": 100,
+        "price": 4.25,
         "isVegan": true,
         "isCeliac": true,
         "ingredients": [],
@@ -182,7 +182,7 @@
       {
         "id": "16",
         "name": "Pizza party (four pies)",
-        "price": 100,
+        "price": 95,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": [],
@@ -198,7 +198,7 @@
       {
         "id": "17",
         "name": "French Fries",
-        "price": 100,
+        "price": 5,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": [],
@@ -207,7 +207,7 @@
       {
         "id": "18",
         "name": "Caesar salad",
-        "price": 100,
+        "price": 10,
         "isVegan": false,
         "isCeliac": false,
         "ingredients": ["Lettuce", "Caesar dressing", "Chicken", "Croutons"],
@@ -216,7 +216,7 @@
       {
         "id": "19",
         "name": "Simple salad",
-        "price": 100,
+        "price": 10,
         "isVegan": true,
         "isCeliac": true,
         "ingredients": ["Lettuce", "Tomato", "Carrot"],
