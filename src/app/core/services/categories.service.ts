@@ -1,0 +1,15 @@
+import { Injectable } from '@angular/core';
+import { Category } from '../interfaces/categories';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CategoriesService {
+  constructor() {}
+
+  async getAll(): Promise<Category[]> {
+    const res = await fetch('/assets/data/database.json');
+    const resJson = await res.json();
+    return resJson;
+  }
+}

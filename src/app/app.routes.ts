@@ -7,28 +7,28 @@ import { SearchComponent } from './pages/search/search.component';
 import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: HomeComponent
-    },
-    {
-        path: "cart",
-        component: CartComponent
-    },
-    {
-        path: "entry",
-        component: EntryComponent
-    },
-    {
-        path: "article",
-        component: ArticleComponent
-    },
-    {
-        path: "profile",
-        component: ProfileComponent
-    },
-    {
-        path: "search",
-        component: SearchComponent
-    },
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'category/:id',
+    component: EntryComponent,
+  },
+  {
+    path: 'article',
+    component: ArticleComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+  },
 ];
