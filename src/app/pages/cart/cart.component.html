@@ -50,8 +50,17 @@
   <h3>Delivery address</h3>
   <div class="flex-apart delivery-container">
     <div>
-      <h4>Example st. 123</h4>
-      <p>East Meadow, New York, 11554</p>
+      <ng-container *ngIf="profileService.profile(); else noDeliveryDetails">
+        <h4>{{ profileService.profile()!.name }}</h4>
+        <p>
+          {{ profileService.profile()!.address }} -
+          {{ profileService.profile()!.phone }}
+        </p>
+        <p>{{ profileService.profile()!.deliveryDetails }}</p>
+      </ng-container>
+      <ng-template #noDeliveryDetails>
+        <p>Enter your delivery details</p>
+      </ng-template>
     </div>
     <div>
       <a [routerLink]="['/profile']" routerLinkActive="router-link-active">

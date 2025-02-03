@@ -1,0 +1,33 @@
+* {
+  font-size: large;
+}
+
+form {
+  gap: 20px;
+}
+
+form div {
+  gap: 5px;
+}
+
+form,
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  height: 30px;
+  font-weight: bold;
+  background-color: #f7e5f5;
+  border: 1px solid black;
+  border-radius: 15px;
+  cursor: pointer;
+  &:disabled {
+    background-color: rgb(217, 217, 217);
+  }
+}
+
+.error {
+  color: red;
+}

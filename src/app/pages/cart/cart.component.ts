@@ -6,6 +6,7 @@ import { AmountCounterComponent } from '../../core/components/amount-counter/amo
 import { Product } from '../../core/interfaces/products';
 import { ProductsService } from '../../core/services/products.service';
 import { RouterModule } from '@angular/router';
+import { ProfileService } from '../../core/services/profile.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +19,7 @@ export class CartComponent {
   headerService = inject(HeaderService);
   cartService = inject(CartService);
   productsService = inject(ProductsService);
+  profileService = inject(ProfileService);
 
   cartProducts: Product[] = [];
 
