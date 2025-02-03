@@ -1,1 +1,81 @@
-<p>cart works!</p>
+<div class="cards-container small-margin">
+  <div
+    *ngFor="let product of cartService.cart; index as i"
+    class="product-card-container"
+  >
+    <ng-container *ngIf="cartProducts[i]">
+      <div
+        class="left"
+        [ngStyle]="{
+          'background-image': 'url(' + cartProducts[i].pictureUrl + ')'
+        }"
+      >
+        <div>
+          <img
+            class="gf"
+            *ngIf="cartProducts[i].isCeliac"
+            src="/icons/celiac.png"
+            alt="Gluten free"
+          />
+          <img
+            *ngIf="cartProducts[i].isVegan"
+            src="/icons/vegan.png"
+            alt="Vegan"
+          />
+        </div>
+      </div>
+      <div class="center">
+        <p class="bold">{{ cartProducts[i].name }}</p>
+        <p *ngIf="product.notes !== ''">{{ product.notes }}</p>
+        <app-amount-counter
+          [initialAmount]="product.amount"
+          (changedAmount)="changeProductAmount(product.idProduct, $event)"
+        ></app-amount-counter>
+      </div>
+      <div class="right">
+        <button class="delete" (click)="deleteProduct(product.idProduct)">
+          <img src="/icons/delete.png" alt="" />
+        </button>
+        <p class="bold">${{ cartProducts[i].price }}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="flex-center">
+  <a id="more" [routerLink]="['/']" routerLinkActive="router-link-active">+</a>
+</div>
+
+<section id="information" class="small-margin">
+  <h3>Delivery address</h3>
+  <div class="flex-apart delivery-container">
+    <div>
+      <h4>Example st. 123</h4>
+      <p>East Meadow, New York, 11554</p>
+    </div>
+    <div>
+      <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
+        <img src="/icons/pencil.png" alt="Edit" />
+      </a>
+    </div>
+  </div>
+  <div id="totals" class="flex-apart">
+    <div>
+      <p class="bold">Subtotal</p>
+      <p>Delivery</p>
+      <p class="bold">Total</p>
+    </div>
+    <div class="amounts">
+      <p class="bold">
+        $<span>{{ subtotal }}</span>
+      </p>
+      <p>
+        $<span>{{ delivery }}</span>
+      </p>
+      <p class="bold">
+        $<span>{{ total }}</span>
+      </p>
+    </div>
+  </div>
+  <button class="send-message">Send message</button>
+</section>

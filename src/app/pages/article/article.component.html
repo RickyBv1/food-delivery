@@ -19,12 +19,18 @@
     </div>
   </div>
   <label for="notes">Notes:</label>
-  <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+  <textarea
+    name="notes"
+    id="notes"
+    cols="30"
+    rows="10"
+    [(ngModel)]="notes"
+  ></textarea>
   <div class="amount-container">
     <label for="amount">Amount:</label>
     <app-amount-counter
       (changedAmount)="amount.set($event)"
     ></app-amount-counter>
   </div>
-  <button>Add to cart</button>
+  <button (click)="addToCart()">Add to cart</button>
 </div>
