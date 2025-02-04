@@ -2,10 +2,11 @@
   display: flex;
   align-items: center;
   height: 30px;
-  background-color: #f7e5f5;
+  background-color: #7b86eb;
   border-radius: 25px;
   margin: 20px 10%;
   padding: 5px 10px;
+  box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   input {
     width: 100%;
     background-color: unset;
@@ -37,4 +38,10 @@ img {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+h2 {
+  margin-top: 50px;
+  font-size: xx-large;
+  text-align: center;
 }

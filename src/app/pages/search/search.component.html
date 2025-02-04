@@ -1,34 +1,40 @@
-<form #searchForm="ngForm" (change)="search()">
-  <div class="search-bar">
-    <img src="/icons/magnifying.svg" alt="Search" />
-    <input type="text" name="text" [(ngModel)]="searchParameters.text" />
-  </div>
-  <div class="filters-container">
-    <div class="special-container">
-      <img src="/icons/celiac.png" alt="Gluten free" />
-      <input
-        type="checkbox"
-        name="gf"
-        id="gf"
-        [(ngModel)]="searchParameters.isGlutenFree"
-      />
-      <span>Gluten free</span>
+<section>
+  <form #searchForm="ngForm" (change)="search()">
+    <div class="search-bar">
+      <img src="/icons/magnifying.svg" alt="Search" />
+      <input type="text" name="text" [(ngModel)]="searchParameters.text" />
     </div>
-    <div class="special-container">
-      <img src="/icons/vegan.png" alt="Vegan" />
-      <input
-        type="checkbox"
-        name="vegan"
-        id="vegan"
-        [(ngModel)]="searchParameters.isVegan"
-      />
-      <span>Vegan</span>
+    <div class="filters-container">
+      <div class="special-container">
+        <img src="/icons/celiac.png" alt="Gluten free" />
+        <input
+          type="checkbox"
+          name="gf"
+          id="gf"
+          [(ngModel)]="searchParameters.isGlutenFree"
+        />
+        <span>Gluten free</span>
+      </div>
+      <div class="special-container">
+        <img src="/icons/vegan.png" alt="Vegan" />
+        <input
+          type="checkbox"
+          name="vegan"
+          id="vegan"
+          [(ngModel)]="searchParameters.isVegan"
+        />
+        <span>Vegan</span>
+      </div>
     </div>
+  </form>
+  <div class="products-container" *ngIf="products().length !== 0; else noResult">
+    <app-product-card
+      *ngFor="let product of products()"
+      [product]="product"
+      [routerLink]="['/article',product.id]" 
+    ></app-product-card>
   </div>
-</form>
-<div class="products-container">
-  <app-product-card
-    *ngFor="let product of products"
-    [product]="product"
-  ></app-product-card>
-</div>
+  <ng-template #noResult>
+    <h2>No results to show</h2>
+  </ng-template>
+</section>

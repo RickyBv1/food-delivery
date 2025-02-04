@@ -3,7 +3,7 @@
   src="{{ product?.pictureUrl }}"
   alt="{{ product?.name }}"
 />
-<div class="small-margin">
+<section class="small-margin">
   <ul>
     <span>Ingredients: </span>
     <li *ngFor="let ingredient of product?.ingredients">{{ ingredient }}</li>
@@ -33,4 +33,4 @@
     ></app-amount-counter>
   </div>
   <button (click)="addToCart()">Add to cart</button>
-</div>
+</section>

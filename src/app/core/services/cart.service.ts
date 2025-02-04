@@ -1,13 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Cart } from '../interfaces/cart';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  constructor() {
+  constructor(private config:ConfigService) {
     const cart = localStorage.getItem('cart');
-    if (cart) this.cart = JSON.parse(cart);
+    if (cart) {
+      const savedCart = JSON.parse(cart);
+      if (savedCart) {
+        const savedDate = new Date(savedCart.date);
+        const date = new Date();
+        if (date.getTime() - savedDate.getTime() > 1000*60*60*24*this.config.configuration().cartExpirationDays) {
+          this.empty
+        } else {
+          this.cart = savedCart.products;
+        }
+      }
+    }
   }
 
   cart: Cart[] = [];
@@ -29,7 +41,7 @@ export class CartService {
 
   deleteProduct(idProduct: number) {
     this.cart = this.cart.filter((product) => product.idProduct !== idProduct);
-    if (this.cart.length === 0) return localStorage.clear();
+    if (this.cart.length === 0) return localStorage.removeItem("cart");
     this.updateStorage();
   }
 
@@ -44,11 +56,16 @@ export class CartService {
   }
 
   updateStorage() {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    const date = new Date();
+    const toSaveElement = {
+      date,
+      products: this.cart
+    }
+    localStorage.setItem('cart', JSON.stringify(toSaveElement));
   }
 
   empty() {
     this.cart = [];
-    localStorage.clear();
+    localStorage.removeItem("cart");
   }
 }

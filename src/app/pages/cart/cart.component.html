@@ -1,53 +1,55 @@
-<ng-container *ngIf="cartService.cart.length !== 0, else noCart">
-  <div class="cards-container small-margin">
-    <div
-      *ngFor="let product of cartService.cart; index as i"
-      class="product-card-container"
-    >
-      <ng-container *ngIf="cartProducts[i]">
-        <div
-          class="left"
-          [ngStyle]="{
-            'background-image': 'url(' + cartProducts[i].pictureUrl + ')'
-          }"
-        >
-          <div>
-            <img
-              class="gf"
-              *ngIf="cartProducts[i].isCeliac"
-              src="/icons/celiac.png"
-              alt="Gluten free"
-            />
-            <img
-              *ngIf="cartProducts[i].isVegan"
-              src="/icons/vegan.png"
-              alt="Vegan"
-            />
+<ng-container *ngIf="cartService.cart.length !== 0; else noCart">
+  <section>
+    <div class="cards-container small-margin">
+      <div
+        *ngFor="let product of cartService.cart; index as i"
+        class="product-card-container"
+      >
+        <ng-container *ngIf="cartProducts()[i]">
+          <div
+            class="left"
+            [ngStyle]="{
+              'background-image': 'url(' + cartProducts()[i].pictureUrl + ')'
+            }"
+          >
+            <div>
+              <img
+                class="gf"
+                *ngIf="cartProducts()[i].isCeliac"
+                src="/icons/celiac.png"
+                alt="Gluten free"
+              />
+              <img
+                *ngIf="cartProducts()[i].isVegan"
+                src="/icons/vegan.png"
+                alt="Vegan"
+              />
+            </div>
           </div>
-        </div>
-        <div class="center">
-          <p class="bold">{{ cartProducts[i].name }}</p>
-          <p *ngIf="product.notes !== ''">{{ product.notes }}</p>
-          <app-amount-counter
-            [initialAmount]="product.amount"
-            (changedAmount)="changeProductAmount(product.idProduct, $event)"
-          ></app-amount-counter>
-        </div>
-        <div class="right">
-          <button class="delete" (click)="deleteProduct(product.idProduct)">
-            <img src="/icons/delete.png" alt="" />
-          </button>
-          <p class="bold">${{ cartProducts[i].price }}</p>
-        </div>
-      </ng-container>
+          <div class="center">
+            <p class="bold">{{ cartProducts()[i].name }}</p>
+            <p *ngIf="product.notes !== ''">{{ product.notes }}</p>
+            <app-amount-counter
+              [initialAmount]="product.amount"
+              (changedAmount)="changeProductAmount(product.idProduct, $event)"
+            ></app-amount-counter>
+          </div>
+          <div class="right">
+            <button class="delete" (click)="deleteProduct(product.idProduct)">
+              <img src="/icons/delete.png" alt="" />
+            </button>
+            <p class="bold">${{ cartProducts()[i].price }}</p>
+          </div>
+        </ng-container>
+      </div>
     </div>
-  </div>
 
-  <div class="flex-center">
-    <a id="more" [routerLink]="['/']" routerLinkActive="router-link-active"
-      >+</a
-    >
-  </div>
+    <div class="flex-center">
+      <a id="more" [routerLink]="['/']" routerLinkActive="router-link-active"
+        >+</a
+      >
+    </div>
+  </section>
 
   <section id="information" class="small-margin">
     <h3>Delivery address</h3>
@@ -67,7 +69,7 @@
       </div>
       <div>
         <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
-          <img src="/icons/pencil.png" alt="Edit" />
+          <img class="edit-address" src="/icons/pencil.png" alt="Edit" />
         </a>
       </div>
     </div>
@@ -78,18 +80,12 @@
         <p class="bold">Total</p>
       </div>
       <div class="amounts">
-        <p class="bold">
-          $<span>{{ subtotal }}</span>
-        </p>
-        <p>
-          $<span>{{ delivery }}</span>
-        </p>
-        <p class="bold">
-          $<span>{{ total }}</span>
-        </p>
+        <p class="bold">${{ subtotal }}</p>
+        <p>${{ this.configService.configuration().deliveryCost }}</p>
+        <p class="bold">${{ total }}</p>
       </div>
     </div>
-    <button class="send-message" (click)="sendMessage()">Send message</button>
+    <button class="send-message" [disabled]="!profileService.profile()" (click)="sendMessage()">Send order</button>
   </section>
 </ng-container>
 <ng-template #noCart>
@@ -102,8 +98,6 @@
     <button (click)="endOrder()">
       <span>Yes</span><span>Go back home</span>
     </button>
-    <button (click)="editOrder()">
-      <span>No</span><span>Try again</span>
-    </button>
+    <button (click)="editOrder()"><span>No</span><span>Try again</span></button>
   </div>
 </dialog>

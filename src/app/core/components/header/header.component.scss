@@ -4,9 +4,10 @@ header {
   justify-content: center;
   align-items: flex-end;
   height: 80px;
-  background-color: #e8b0e1;
+  background-color: #4251da;
   border-radius: 0 0 15px 15px;
   transition: 500ms ease-in-out;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 header::before {

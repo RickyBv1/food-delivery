@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild, WritableSignal } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
@@ -8,6 +8,7 @@ import { ProductsService } from '../../core/services/products.service';
 import { Router, RouterModule } from '@angular/router';
 import { ProfileService } from '../../core/services/profile.service';
 import { STORE_PHONE } from '../../core/constants/phone';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
   selector: 'app-cart',
@@ -21,22 +22,28 @@ export class CartComponent {
   cartService = inject(CartService);
   productsService = inject(ProductsService);
   profileService = inject(ProfileService);
+  configService = inject(ConfigService);
   router = inject(Router)
 
-  cartProducts: Product[] = [];
+  cartProducts: WritableSignal<Product[]> = signal([]);
 
   subtotal = 0;
-  delivery = 10;
   total = 0;
   @ViewChild("dialog") dialog!:ElementRef<HTMLDialogElement>;
 
   ngOnInit(): void {
     this.headerService.title.set('Cart');
-    this.cartService.cart.forEach(async (cartItem) => {
-      const res = await this.productsService.getById(cartItem.idProduct);
-      if (res) this.cartProducts.push(res);
+    this.searchProductsInfo().then(() => {
       this.calculateInfo();
     });
+  }
+
+  async searchProductsInfo() {
+    for (let i = 0; i < this.cartService.cart.length; i++) {
+      const cartItem = this.cartService.cart[i];
+      const res = await this.productsService.getById(cartItem.idProduct);
+      if (res) this.cartProducts.set([...this.cartProducts(), res]);
+    }
   }
 
   deleteProduct(idProduct: number) {
@@ -47,9 +54,9 @@ export class CartComponent {
     this.subtotal = 0;
     for (let i = 0; i < this.cartService.cart.length; i++) {
       this.subtotal +=
-        this.cartProducts[i].price * this.cartService.cart[i].amount;
+        this.cartProducts()[i].price * this.cartService.cart[i].amount;
     }
-    this.total = this.subtotal + this.delivery;
+    this.total = this.subtotal + this.configService.configuration().deliveryCost;
   }
 
   changeProductAmount(id: number, amount: number) {

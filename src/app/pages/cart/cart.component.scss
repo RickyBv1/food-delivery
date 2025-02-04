@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   height: 100px;
-  background-color: #f7e5f5;
+  background-color: #7b86eb;
   > div {
     display: flex;
     flex-direction: column;
@@ -21,7 +21,6 @@
 
 .left {
   width: 35%;
-  background-color: aquamarine;
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -57,12 +56,14 @@
 }
 
 #more {
+  height: 38px;
   font-size: xx-large;
   text-decoration: none;
   color: black;
-  background-color: #f7e5f5;
+  background-color: #7b86eb;
   padding: 10px 20px;
   border-radius: 10px;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 #information {
@@ -70,7 +71,7 @@
 }
 
 .delivery-container {
-  background-color: #f7e5f5;
+  background-color: #7b86eb;
   border-radius: 10px;
   padding: 10px;
   margin: 10px 0;
@@ -95,16 +96,21 @@
   width: 100%;
   margin-top: 40px;
   font-size: large;
-  background-color: #e8b0e1;
+  background-color: #4251da;
   border: unset;
   cursor: pointer;
   padding: 15px 0;
   border-radius: 10px;
   font-weight: bold;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.edit-address {
+  padding-right: 5px;
 }
 
 dialog {
-  background-color: #f7e5f5;
+  background-color: #7b86eb;
   border-radius: 10px;
   border: unset;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);

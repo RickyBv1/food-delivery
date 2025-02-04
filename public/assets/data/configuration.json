@@ -1,4 +1,4 @@
 {
-  "deliveryCost": 200,
-  "cartExpirationDays": 4
+  "deliveryCost": 15,
+  "cartExpirationDays": 3
 }
