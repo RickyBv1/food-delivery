@@ -8,27 +8,27 @@ import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeComponent,
   },
   {
-    path: 'cart',
+    path: "cart",
     component: CartComponent,
   },
   {
-    path: 'category/:id',
+    path: "category/:id",
     component: EntryComponent,
   },
   {
-    path: 'article/:id',
+    path: "article/:id",
     component: ArticleComponent,
   },
   {
-    path: 'profile',
+    path: "profile",
     component: ProfileComponent,
   },
   {
-    path: 'search',
+    path: "search",
     component: SearchComponent,
   },
 ];
