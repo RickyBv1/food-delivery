@@ -20,7 +20,7 @@ export class EntryComponent {
   products: WritableSignal<Product[]> = signal([]);
 
   ngOnInit(): void {
-    this.ac.params.subscribe((params) => {
+    this.ac.params.subscribe(params => {
       if (params['id']) {
         this.categoriesService
           .getById(parseInt(params['id']))
