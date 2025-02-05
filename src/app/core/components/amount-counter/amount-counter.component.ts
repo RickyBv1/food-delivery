@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   Component,
   EventEmitter,
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-amount-counter',
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './amount-counter.component.html',
   styleUrl: './amount-counter.component.scss',
   standalone: true,

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -8,7 +8,7 @@ import { CategoriesService } from '../../core/services/categories.service';
 
 @Component({
   selector: 'app-entry',
-  imports: [CommonModule, ProductCardComponent, RouterModule],
+  imports: [ProductCardComponent, RouterModule],
   templateUrl: './entry.component.html',
   styleUrl: './entry.component.scss',
   standalone: true,

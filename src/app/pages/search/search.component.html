@@ -12,29 +12,38 @@
           name="gf"
           id="gf"
           [(ngModel)]="searchParameters.isGlutenFree"
-        />
-        <span>Gluten free</span>
-      </div>
-      <div class="special-container">
-        <img src="/icons/vegan.png" alt="Vegan" />
-        <input
-          type="checkbox"
-          name="vegan"
-          id="vegan"
-          [(ngModel)]="searchParameters.isVegan"
-        />
-        <span>Vegan</span>
-      </div>
-    </div>
-  </form>
-  <div class="products-container" *ngIf="products().length !== 0; else noResult">
-    <app-product-card
-      *ngFor="let product of products()"
-      [product]="product"
-      [routerLink]="['/article',product.id]" 
-    ></app-product-card>
-  </div>
-  <ng-template #noResult>
-    <h2>No results to show</h2>
-  </ng-template>
-</section>
+          />
+          <span>Gluten free</span>
+        </div>
+        <div class="special-container">
+          <img src="/icons/vegan.png" alt="Vegan" />
+          <input
+            type="checkbox"
+            name="vegan"
+            id="vegan"
+            [(ngModel)]="searchParameters.isVegan"
+            />
+            <span>Vegan</span>
+          </div>
+        </div>
+      </form>
+      @defer (when !loading()) {
+        
+        @if (products().length !== 0) {
+          <div class="products-container">
+            @for (product of products(); track product) {
+              <app-product-card
+              [product]="product"
+              [routerLink]="['/article',product.id]"
+              ></app-product-card>
+            }
+          </div>
+        } @else {
+          <h2>No results to show</h2>
+        }
+      } @loading (minimum 500ms) {
+        <div class="flex-center">
+          <img src="/icons/spinner.svg" alt="Loading">
+        </div>
+      }
+    </section>

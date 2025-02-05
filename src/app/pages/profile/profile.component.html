@@ -3,7 +3,7 @@
     #details="ngForm"
     (ngSubmit)="saveProfileDetails()"
     class="small-margin"
-  >
+    >
     <div>
       <label for="name">Name</label>
       <input
@@ -14,51 +14,57 @@
         #name="ngModel"
         required
         minlength="3"
-      />
-      <p class="error" *ngIf="name.invalid && name.touched">
-        Insert a valid name
-      </p>
-    </div>
-    <div>
-      <label for="address">Address</label>
-      <input
-        type="text"
-        name="address"
-        id="address"
-        [(ngModel)]="profile.address"
-        #address="ngModel"
-        required
-        minlength="8"
-      />
-      <p class="error" *ngIf="address.invalid && address.touched">
-        Insert a valid address
-      </p>
-    </div>
-    <div>
-      <label for="notes">Notes</label>
-      <input
-        type="text"
-        name="notes"
-        id="notes"
-        [(ngModel)]="profile.deliveryDetails"
-        #notes="ngModel"
-      />
-    </div>
-    <div>
-      <label for="phone">Phone</label>
-      <input
-        type="text"
-        name="phone"
-        id="phone"
-        [(ngModel)]="profile.phone"
-        #phone="ngModel"
-        required
-        minlength="8"
-      />
-      <p class="error" *ngIf="phone.invalid && phone.touched">
-        Insert a valid phone
-      </p>
-    </div>
-    <button [disabled]="details.invalid">Save</button>
-  </form>
-</section>
+        />
+        @if (name.invalid && name.touched) {
+          <p class="error">
+            Insert a valid name
+          </p>
+        }
+      </div>
+      <div>
+        <label for="address">Address</label>
+        <input
+          type="text"
+          name="address"
+          id="address"
+          [(ngModel)]="profile.address"
+          #address="ngModel"
+          required
+          minlength="8"
+          />
+          @if (address.invalid && address.touched) {
+            <p class="error">
+              Insert a valid address
+            </p>
+          }
+        </div>
+        <div>
+          <label for="notes">Notes</label>
+          <input
+            type="text"
+            name="notes"
+            id="notes"
+            [(ngModel)]="profile.deliveryDetails"
+            #notes="ngModel"
+            />
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              [(ngModel)]="profile.phone"
+              #phone="ngModel"
+              required
+              minlength="8"
+              />
+              @if (phone.invalid && phone.touched) {
+                <p class="error">
+                  Insert a valid phone
+                </p>
+              }
+            </div>
+            <button [disabled]="details.invalid">Save</button>
+          </form>
+        </section>

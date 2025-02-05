@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
-import { CommonModule } from '@angular/common';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../core/services/products.service';
 import { Product } from '../../core/interfaces/products';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-article',
-  imports: [CommonModule, AmountCounterComponent, FormsModule],
+  imports: [AmountCounterComponent, FormsModule],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss',
   standalone: true,

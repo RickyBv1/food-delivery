@@ -2,19 +2,24 @@
   <div
     class="picture"
     [ngStyle]="{ 'background-image': 'url(' + product.pictureUrl + ')' }"
-  >
-    <img
-      *ngIf="product.isCeliac"
-      src="/icons/celiac.png"
-      alt="Gluten free"
-      class="gf"
-    />
-    <img *ngIf="product.isVegan" src="/icons/vegan.png" alt="Vegan" />
+    >
+    @if (product.isCeliac) {
+      <img
+        src="/icons/celiac.png"
+        alt="Gluten free"
+        class="gf"
+        />
+    }
+    @if (product.isVegan) {
+      <img src="/icons/vegan.png" alt="Vegan" />
+    }
   </div>
   <div class="details">
     <h4>{{ product.name }}</h4>
     <ul>
-      <li *ngFor="let ingredient of product.ingredients">{{ ingredient }}</li>
+      @for (ingredient of product.ingredients; track ingredient) {
+        <li>{{ ingredient }}</li>
+      }
     </ul>
     <p class="price">${{ product.price }}</p>
   </div>

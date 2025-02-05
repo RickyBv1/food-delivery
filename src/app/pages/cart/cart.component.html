@@ -1,103 +1,104 @@
-<ng-container *ngIf="cartService.cart.length !== 0; else noCart">
+@if (cartService.cart.length !== 0) {
   <section>
     <div class="cards-container small-margin">
-      <div
-        *ngFor="let product of cartService.cart; index as i"
-        class="product-card-container"
-      >
-        <ng-container *ngIf="cartProducts()[i]">
-          <div
-            class="left"
+      @for (product of cartService.cart; track product; let i = $index) {
+        <div
+          class="product-card-container"
+          >
+          @if (cartProducts()[i]) {
+            <div
+              class="left"
             [ngStyle]="{
               'background-image': 'url(' + cartProducts()[i].pictureUrl + ')'
             }"
-          >
-            <div>
-              <img
-                class="gf"
-                *ngIf="cartProducts()[i].isCeliac"
-                src="/icons/celiac.png"
-                alt="Gluten free"
-              />
-              <img
-                *ngIf="cartProducts()[i].isVegan"
-                src="/icons/vegan.png"
-                alt="Vegan"
-              />
+              >
+              <div>
+                @if (cartProducts()[i].isCeliac) {
+                  <img
+                    class="gf"
+                    src="/icons/celiac.png"
+                    alt="Gluten free"
+                    />
+                }
+                @if (cartProducts()[i].isVegan) {
+                  <img
+                    src="/icons/vegan.png"
+                    alt="Vegan"
+                    />
+                }
+              </div>
             </div>
-          </div>
-          <div class="center">
-            <p class="bold">{{ cartProducts()[i].name }}</p>
-            <p *ngIf="product.notes !== ''">{{ product.notes }}</p>
-            <app-amount-counter
-              [initialAmount]="product.amount"
-              (changedAmount)="changeProductAmount(product.idProduct, $event)"
-            ></app-amount-counter>
-          </div>
-          <div class="right">
-            <button class="delete" (click)="deleteProduct(product.idProduct)">
-              <img src="/icons/delete.png" alt="" />
-            </button>
-            <p class="bold">${{ cartProducts()[i].price }}</p>
-          </div>
-        </ng-container>
-      </div>
+            <div class="center">
+              <p class="bold">{{ cartProducts()[i].name }}</p>
+              @if (product.notes !== '') {
+                <p>{{ product.notes }}</p>
+              }
+              <app-amount-counter
+                [initialAmount]="product.amount"
+                (changedAmount)="changeProductAmount(product.idProduct, $event)"
+              ></app-amount-counter>
+            </div>
+            <div class="right">
+              <button class="delete" (click)="deleteProduct(product.idProduct)">
+                <img src="/icons/delete.png" alt="" />
+              </button>
+              <p class="bold">${{ cartProducts()[i].price }}</p>
+            </div>
+          }
+        </div>
+      }
     </div>
-
     <div class="flex-center">
       <a id="more" [routerLink]="['/']" routerLinkActive="router-link-active"
         >+</a
-      >
-    </div>
-  </section>
+        >
+      </div>
+    </section>
+    <section id="information" class="small-margin">
+      <h3>Delivery address</h3>
+      <div class="flex-apart delivery-container">
+        <div>
+          @if (profileService.profile()) {
+            <h4>{{ profileService.profile()!.name }}</h4>
+            <p>
+              {{ profileService.profile()!.address }} -
+              {{ profileService.profile()!.phone }}
+            </p>
+            <p>{{ profileService.profile()!.deliveryDetails }}</p>
+          } @else {
+            <p>Enter your delivery details</p>
+          }
+        </div>
+        <div>
+          <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
+            <img class="edit-address" src="/icons/pencil.png" alt="Edit" />
+          </a>
+        </div>
+      </div>
+      <div id="totals" class="flex-apart">
+        <div>
+          <p class="bold">Subtotal</p>
+          <p>Delivery</p>
+          <p class="bold">Total</p>
+        </div>
+        <div class="amounts">
+          <p class="bold">${{ subtotal }}</p>
+          <p>${{ this.configService.configuration().deliveryCost }}</p>
+          <p class="bold">${{ total }}</p>
+        </div>
+      </div>
+      <button class="send-message" [disabled]="!profileService.profile()" (click)="sendMessage()">Send order</button>
+    </section>
+  } @else {
+    <h2>Your cart is empty</h2>
+  }
 
-  <section id="information" class="small-margin">
-    <h3>Delivery address</h3>
-    <div class="flex-apart delivery-container">
-      <div>
-        <ng-container *ngIf="profileService.profile(); else noDeliveryDetails">
-          <h4>{{ profileService.profile()!.name }}</h4>
-          <p>
-            {{ profileService.profile()!.address }} -
-            {{ profileService.profile()!.phone }}
-          </p>
-          <p>{{ profileService.profile()!.deliveryDetails }}</p>
-        </ng-container>
-        <ng-template #noDeliveryDetails>
-          <p>Enter your delivery details</p>
-        </ng-template>
-      </div>
-      <div>
-        <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
-          <img class="edit-address" src="/icons/pencil.png" alt="Edit" />
-        </a>
-      </div>
+  <dialog method="modal" #dialog>
+    <p>Where you able to send your order?</p>
+    <div>
+      <button (click)="endOrder()">
+        <span>Yes</span><span>Go back home</span>
+      </button>
+      <button (click)="editOrder()"><span>No</span><span>Try again</span></button>
     </div>
-    <div id="totals" class="flex-apart">
-      <div>
-        <p class="bold">Subtotal</p>
-        <p>Delivery</p>
-        <p class="bold">Total</p>
-      </div>
-      <div class="amounts">
-        <p class="bold">${{ subtotal }}</p>
-        <p>${{ this.configService.configuration().deliveryCost }}</p>
-        <p class="bold">${{ total }}</p>
-      </div>
-    </div>
-    <button class="send-message" [disabled]="!profileService.profile()" (click)="sendMessage()">Send order</button>
-  </section>
-</ng-container>
-<ng-template #noCart>
-  <h2>Your cart is empty</h2>
-</ng-template>
-
-<dialog method="modal" #dialog>
-  <p>Where you able to send your order?</p>
-  <div>
-    <button (click)="endOrder()">
-      <span>Yes</span><span>Go back home</span>
-    </button>
-    <button (click)="editOrder()"><span>No</span><span>Try again</span></button>
-  </div>
-</dialog>
+  </dialog>

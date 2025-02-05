@@ -3,12 +3,12 @@ import { HeaderService } from '../../core/services/header.service';
 import { CategoriesService } from '../../core/services/categories.service';
 import { Category } from '../../core/interfaces/categories';
 import { CategoryCardsComponent } from '../../core/components/category-cards/category-cards.component';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CategoryCardsComponent, CommonModule, RouterModule],
+  imports: [CategoryCardsComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   standalone: true,

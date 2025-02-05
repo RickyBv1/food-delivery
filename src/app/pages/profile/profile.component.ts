@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Profile } from '../../core/interfaces/profiles';
 import { ProfileService } from '../../core/services/profile.service';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
   standalone: true,

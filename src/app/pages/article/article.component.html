@@ -2,35 +2,41 @@
   class="product-picture"
   src="{{ product?.pictureUrl }}"
   alt="{{ product?.name }}"
-/>
-<section class="small-margin">
-  <ul>
-    <span>Ingredients: </span>
-    <li *ngFor="let ingredient of product?.ingredients">{{ ingredient }}</li>
-  </ul>
-  <div>
-    <div class="different-container" *ngIf="product?.isCeliac">
-      <img class="different" src="/icons/celiac.png" alt="Gluten Free" />
-      <p>Gluten Free</p>
+  />
+  <section class="small-margin">
+    <ul>
+      <span>Ingredients: </span>
+      @for (ingredient of product?.ingredients; track ingredient) {
+        <li>{{ ingredient }}</li>
+      }
+    </ul>
+    <div>
+      @if (product?.isCeliac) {
+        <div class="different-container">
+          <img class="different" src="/icons/celiac.png" alt="Gluten Free" />
+          <p>Gluten Free</p>
+        </div>
+      }
+      @if (product?.isVegan) {
+        <div class="different-container">
+          <img class="different" src="/icons/vegan.png" alt="Vegan" />
+          <p>Vegan</p>
+        </div>
+      }
     </div>
-    <div class="different-container" *ngIf="product?.isVegan">
-      <img class="different" src="/icons/vegan.png" alt="Vegan" />
-      <p>Vegan</p>
+    <label for="notes">Notes:</label>
+    <textarea
+      name="notes"
+      id="notes"
+      cols="30"
+      rows="10"
+      [(ngModel)]="notes"
+    ></textarea>
+    <div class="amount-container">
+      <label for="amount">Amount:</label>
+      <app-amount-counter
+        (changedAmount)="amount.set($event)"
+      ></app-amount-counter>
     </div>
-  </div>
-  <label for="notes">Notes:</label>
-  <textarea
-    name="notes"
-    id="notes"
-    cols="30"
-    rows="10"
-    [(ngModel)]="notes"
-  ></textarea>
-  <div class="amount-container">
-    <label for="amount">Amount:</label>
-    <app-amount-counter
-      (changedAmount)="amount.set($event)"
-    ></app-amount-counter>
-  </div>
-  <button (click)="addToCart()">Add to cart</button>
-</section>
+    <button (click)="addToCart()">Add to cart</button>
+  </section>
