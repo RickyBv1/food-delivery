@@ -1,1 +1,1 @@
-export const STORE_PHONE = "+15166756357"
+export const STORE_PHONE = "+15166756343"
